@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMY's COFFEE CAFE | Toran Club, Ahmedabad - Palanpur Hwy</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        espresso: {
+                            950: '#1D120C',
+                            900: '#2C1B12',
+                            800: '#3E271B',
+                            700: '#543626',
+                            600: '#6F4833',
+                        },
+                        latte: {
+                            50: '#FDFBF7',
+                            100: '#F8F2E9',
+                            200: '#EFE3D1',
+                            300: '#DFCBB0',
+                        },
+                        caramel: {
+                            400: '#D98A4E',
+                            500: '#C46D31',
+                            600: '#A6541E',
+                        },
+                        sage: {
+                            500: '#5B7052',
+                            100: '#EBF0E8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom animations for gentle coffee steam and warm ambient glow */
+        @keyframes riseSteam {
+            0% {
+                transform: translateY(4px) scaleX(1);
+                opacity: 0;
+            }
+            40% {
+                opacity: 0.65;
+            }
+            80% {
+                transform: translateY(-16px) scaleX(1.08);
+                opacity: 0.25;
+            }
+            100% {
+                transform: translateY(-22px) scaleX(0.95);
+                opacity: 0;
+            }
+        }
+
+        .steam-line-1 {
+            animation: riseSteam 3.4s infinite ease-in-out;
+        }
+        .steam-line-2 {
+            animation: riseSteam 3.4s infinite ease-in-out 1.1s;
+        }
+        .steam-line-3 {
+            animation: riseSteam 3.4s infinite ease-in-out 2.2s;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-card-animate {
+            animation: fadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Subtle grain overlay for cozy paper feel */
+        .cozy-texture {
+            background-image: radial-gradient(#3E271B 0.45px, transparent 0.45px);
+            background-size: 20px 20px;
+        }
+
+        /* Hide scrollbars cleanly for horizontal category tabs on small screens */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-latte-50 text-espresso-900 font-sans antialiased selection:bg-caramel-500 selection:text-white overflow-x-hidden">
+
+    <!-- Toast Notification Container (Replaces alert) -->
+    <div id="toast-box" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-espresso-900 text-latte-50 px-5 py-3.5 rounded-2xl shadow-xl border border-espresso-700 flex items-center gap-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-caramel-400"></span>
+            <p id="toast-message" class="text-sm font-medium">Copied to clipboard!</p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-latte-50/90 backdrop-blur-md border-b border-latte-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 py-3.5">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-2xl bg-espresso-900 flex items-center justify-center shadow-sm group-hover:bg-caramel-600 transition-colors">
+                        <!-- Custom Mini Coffee Cup Emblem -->
+                        <svg class="w-6 h-6 text-latte-50" viewBox="0 0 32 32" fill="none">
+                            <path d="M7 12H21V18C21 21.866 17.866 25 14 25C10.134 25 7 21.866 7 18V12Z" fill="currentColor"/>
+                            <path d="M21 14H23.5C24.8807 14 26 15.1193 26 16.5C26 17.8807 24.8807 19 23.5 19H21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M11 8C11 6.5 12 6 12 4.5" stroke="#D98A4E" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 8C16 6.5 17 6 17 4.5" stroke="#D98A4E" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-espresso-900 block leading-none">IMMY's</span>
+                        <span class="text-[11px] font-semibold tracking-[0.2em] text-caramel-600 uppercase block mt-0.5">Coffee Cafe</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-espresso-700">
+                    <a href="#about" class="hover:text-caramel-600 transition-colors">Our Story</a>
+                    <a href="#ambience" class="hover:text-caramel-600 transition-colors">Ambience</a>
+                    <a href="#menu" class="hover:text-caramel-600 transition-colors">Our Menu</a>
+                    <a href="#order-reserve" class="hover:text-caramel-600 transition-colors">Order & Reserve</a>
+                    <a href="#visit" class="hover:text-caramel-600 transition-colors">Location & Hours</a>
+                </nav>
+
+                <!-- Quick Call CTA -->
+                <div class="flex items-center gap-2.5">
+                    <a href="tel:+916353405943" class="inline-flex items-center gap-2 bg-espresso-900 hover:bg-caramel-600 text-latte-50 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-sm transition-all duration-200">
+                        <svg class="w-4 h-4 text-caramel-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        <span>+91 63534 05943</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-latte-200">
+        <!-- Subtle Decorative Background Dots -->
+        <div class="absolute inset-0 cozy-texture opacity-[0.04] pointer-events-none"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-caramel-400/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-espresso-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Left Column: Warm Welcome Copy -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-latte-200/80 border border-latte-300 text-espresso-800 text-xs font-semibold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-sage-500"></span>
+                        <span>Toran Club, Ahmedabad - Palanpur Hwy</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-espresso-950 leading-[1.12] tracking-tight mb-6">
+                        Warm cups, honest bites &amp; a cozy corner at <span class="text-caramel-600 italic">IMMY's.</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-espresso-700 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+                        Pull up a chair at Toran Club on the Ahmedabad–Palanpur Highway. Whether you are stopping by for freshly brewed espresso, classic masala chai, or warm toasted sandwiches, every order is crafted fresh to order.
+                    </p>
+
+                    <!-- Primary Hero Actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 mb-8">
+                        <a href="#menu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-espresso-900 hover:bg-espresso-800 text-latte-50 font-semibold px-7 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition-all">
+                            <span>Explore Our Menu</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <a href="#order-reserve" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-latte-100 text-espresso-900 border border-latte-300 font-semibold px-7 py-3.5 rounded-2xl shadow-sm transition-all">
+                            <span>Order or Book a Table</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Zomato & District Pill Links -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm text-espresso-700">
+                        <span class="font-medium text-espresso-600">Available on:</span>
+                        <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E23744]/10 text-[#C82330] hover:bg-[#E23744] hover:text-white font-semibold transition-colors">
+                            <span>Order on Zomato</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                        <a href="https://www.district.in" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#5B2EFF]/10 text-[#4920D9] hover:bg-[#5B2EFF] hover:text-white font-semibold transition-colors">
+                            <span>Reserve via District</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Custom Illustrated Cozy Cafe Table Scene (Zero Stock Photos) -->
+                <div class="lg:col-span-5">
+                    <div class="relative bg-gradient-to-br from-latte-100 to-latte-200/90 rounded-[2rem] p-6 sm:p-8 border border-latte-300/80 shadow-xl">
+                        <!-- Floating Badge -->
+                        <div class="absolute -top-4 right-6 bg-caramel-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md tracking-wide uppercase">
+                            Freshly Brewed Daily
+                        </div>
+
+                        <!-- Custom SVG Hero Illustration: Steaming Latte, Croissant & Coffee Beans -->
+                        <svg viewBox="0 0 360 300" class="w-full h-auto drop-shadow-sm" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Warm Ambient Window Arch -->
+                            <path d="M55 245V125C55 69.7715 99.7715 25 155 25H205C260.228 25 305 69.7715 305 125V245H55Z" fill="#FDFBF7" stroke="#DFCBB0" stroke-width="2"/>
+                            <!-- Soft Sun Rays inside Arch -->
+                            <circle cx="235" cy="85" r="28" fill="#F6DFC0"/>
+                            <path d="M180 25V245" stroke="#EFE3D1" stroke-width="2"/>
+                            <path d="M55 140H305" stroke="#EFE3D1" stroke-width="2"/>
+
+                            <!-- Wooden Cafe Table Surface -->
+                            <rect x="20" y="238" width="320" height="22" rx="11" fill="#6F4833"/>
+                            <rect x="35" y="260" width="290" height="10" rx="5" fill="#3E271B"/>
+
+                            <!-- Animated Rising Steam Lines -->
+                            <path class="steam-line-1" d="M125 125C125 113 135 110 135 98" stroke="#C46D31" stroke-width="3" stroke-linecap="round"/>
+                            <path class="steam-line-2" d="M145 120C145 108 155 105 155 93" stroke="#D98A4E" stroke-width="3" stroke-linecap="round"/>
+                            <path class="steam-line-3" d="M165 125C165 113 175 110 175 98" stroke="#C46D31" stroke-width="3" stroke-linecap="round"/>
+
+                            <!-- Saucer -->
+                            <ellipse cx="145" cy="233" rx="64" ry="11" fill="#EFE3D1" stroke="#C46D31" stroke-width="2"/>
+                            <ellipse cx="145" cy="231" rx="44" ry="6" fill="#DFCBB0"/>
+
+                            <!-- Ceramic Coffee Mug -->
+                            <path d="M97 152H193V192C193 215.196 174.196 234 151 234H139C115.804 234 97 215.196 97 192V152Z" fill="#2C1B12"/>
+                            <!-- Mug Rim & Crema -->
+                            <ellipse cx="145" cy="152" rx="48" ry="11" fill="#F8F2E9" stroke="#2C1B12" stroke-width="3"/>
+                            <ellipse cx="145" cy="152" rx="42" ry="8" fill="#C46D31"/>
+                            <!-- Latte Art Heart -->
+                            <path d="M145 156C145 156 136 151.5 136 148.5C136 146.8 137.5 145.5 139.5 145.5C141.2 145.5 143.5 146.8 145 148.5C146.5 146.8 148.8 145.5 150.5 145.5C152.5 145.5 154 146.8 154 148.5C154 151.5 145 156 145 156Z" fill="#FDFBF7"/>
+                            <!-- Mug Handle -->
+                            <path d="M193 166H207C216.389 166 224 173.611 224 183C224 192.389 216.389 200 207 200H192" stroke="#2C1B12" stroke-width="8" stroke-linecap="round"/>
+                            <!-- Mug Heart Emblem -->
+                            <circle cx="145" cy="194" r="14" fill="#3E271B"/>
+                            <path d="M145 200C145 200 137 194.5 137 190.5C137 188.2 138.8 186.5 141 186.5C142.5 186.5 144 187.5 145 189C146 187.5 147.5 186.5 149 186.5C151.2 186.5 153 188.2 153 190.5C153 194.5 145 200 145 200Z" fill="#D98A4E"/>
+
+                            <!-- Small Dessert Plate on Right -->
+                            <ellipse cx="268" cy="234" rx="46" ry="8" fill="#FDFBF7" stroke="#DFCBB0" stroke-width="2"/>
+                            <!-- Golden Croissant Illustration -->
+                            <path d="M236 226C238 211 253 202 268 202C283 202 298 211 300 226C292 229 282 227 268 227C254 227 244 229 236 226Z" fill="#D98A4E"/>
+                            <path d="M252 205C255 213 255 220 253 227" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M268 202C268 211 268 220 268 227" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M284 205C281 213 281 220 283 227" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+
+                            <!-- Scattered Roasted Coffee Beans -->
+                            <g transform="translate(65, 224) rotate(-20)">
+                                <ellipse cx="0" cy="0" rx="8" ry="5.5" fill="#3E271B"/>
+                                <path d="M-6 0C-2 -1.5 2 1.5 6 0" stroke="#D98A4E" stroke-width="1.2" stroke-linecap="round"/>
+                            </g>
+                            <g transform="translate(82, 230) rotate(18)">
+                                <ellipse cx="0" cy="0" rx="7" ry="4.8" fill="#543626"/>
+                                <path d="M-5 0C-1.5 -1.2 1.5 1.2 5 0" stroke="#D98A4E" stroke-width="1.2" stroke-linecap="round"/>
+                            </g>
+                        </svg>
+
+                        <div class="mt-4 pt-4 border-t border-latte-300/70 flex items-center justify-between text-xs text-espresso-700">
+                            <div>
+                                <span class="font-semibold text-espresso-900 block">Open Today</span>
+                                <span>10:00 AM – 11:00 PM</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-semibold text-espresso-900 block">Highway Stop &amp; Hangout</span>
+                                <span>Toran Club, Gujarat 385001</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story & About Us Section (With Future Cafe Photo Frames) -->
+    <section id="about" class="py-16 sm:py-24 bg-white border-b border-latte-200 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                
+                <!-- Left: Heartwarming Cafe Story -->
+                <div class="lg:col-span-5">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-caramel-600 block mb-2">Our Story &amp; About Us</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-950 leading-tight mb-5">
+                        A quiet pause along the <span class="text-caramel-600 italic">Ahmedabad–Palanpur</span> stretch.
+                    </h2>
+                    
+                    <div class="space-y-4 text-sm sm:text-base text-espresso-700 leading-relaxed">
+                        <p>
+                            <strong class="text-espresso-900 font-semibold">IMMY's COFFEE CAFE</strong> was born from a simple wish: to create a warm, unhurried neighborhood sanctuary right at <strong class="text-espresso-900 font-semibold">Toran Club</strong> where travelers passing along the highway and locals from Palanpur feel equally at home.
+                        </p>
+                        <p>
+                            We believe a great cafe isn't about complicated menus or rushed service—it's about the comforting aroma of freshly ground beans, a golden grilled sandwich shared between old friends, and a welcoming table where you can linger over your cup without watching the clock.
+                        </p>
+                        <p>
+                            Whether you're stopping in for a morning masala chai, catching up on work in a quiet corner, or winding down after sunset, our doors—and our espresso machine—are always warmed up for you.
+                        </p>
+                    </div>
+
+                    <!-- Signature Quote Card -->
+                    <div class="mt-7 p-5 rounded-2xl bg-latte-100/90 border border-latte-200">
+                        <p class="font-serif italic text-espresso-900 text-base leading-relaxed">
+                            “Good coffee warms the hands; a good cafe warms the day. Welcome to our corner at Toran Club.”
+                        </p>
+                        <span class="text-xs font-bold uppercase tracking-wider text-caramel-600 mt-2 block">
+                            — Team IMMY's Coffee Cafe
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right: Future-Ready Cafe Photo Gallery Placeholders -->
+                <div class="lg:col-span-7">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-serif text-xl font-bold text-espresso-900">Inside IMMY's — Space Gallery</h3>
+                        <span class="text-xs font-medium text-espresso-600 bg-latte-100 px-3 py-1 rounded-full border border-latte-200">
+                            Cafe Photos Coming Soon
+                        </span>
+                    </div>
+
+                    <!-- 2x2 Aesthetic Photo Placeholder Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                        
+                        <!-- Placeholder 1: Main Seating Lounge -->
+                        <div class="group relative aspect-[4/3] rounded-3xl bg-latte-50 border-2 border-dashed border-latte-300 hover:border-caramel-500 transition-all p-5 flex flex-col items-center justify-center text-center overflow-hidden">
+                            <div class="w-12 h-12 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center text-caramel-600 mb-3 group-hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <span class="font-serif font-bold text-espresso-900 text-base">Main Seating Lounge</span>
+                            <span class="text-xs text-espresso-600 mt-1">Photo Coming Soon</span>
+                            <span class="mt-2.5 text-[11px] font-medium text-caramel-600 bg-caramel-400/10 px-2.5 py-0.5 rounded-full">
+                                Warm Wooden Booths &amp; Cushions
+                            </span>
+                        </div>
+
+                        <!-- Placeholder 2: The Espresso Bar -->
+                        <div class="group relative aspect-[4/3] rounded-3xl bg-latte-50 border-2 border-dashed border-latte-300 hover:border-caramel-500 transition-all p-5 flex flex-col items-center justify-center text-center overflow-hidden">
+                            <div class="w-12 h-12 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center text-caramel-600 mb-3 group-hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <span class="font-serif font-bold text-espresso-900 text-base">The Espresso Bar</span>
+                            <span class="text-xs text-espresso-600 mt-1">Photo Coming Soon</span>
+                            <span class="mt-2.5 text-[11px] font-medium text-caramel-600 bg-caramel-400/10 px-2.5 py-0.5 rounded-full">
+                                Fresh Brew Counter &amp; Pastry Display
+                            </span>
+                        </div>
+
+                        <!-- Placeholder 3: Evening Courtyard Lighting -->
+                        <div class="group relative aspect-[4/3] rounded-3xl bg-latte-50 border-2 border-dashed border-latte-300 hover:border-caramel-500 transition-all p-5 flex flex-col items-center justify-center text-center overflow-hidden">
+                            <div class="w-12 h-12 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center text-caramel-600 mb-3 group-hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <span class="font-serif font-bold text-espresso-900 text-base">Evening Courtyard Lighting</span>
+                            <span class="text-xs text-espresso-600 mt-1">Photo Coming Soon</span>
+                            <span class="mt-2.5 text-[11px] font-medium text-caramel-600 bg-caramel-400/10 px-2.5 py-0.5 rounded-full">
+                                Breezy Outdoor Toran Club Sit-Out
+                            </span>
+                        </div>
+
+                        <!-- Placeholder 4: Quiet Reading & Work Corner -->
+                        <div class="group relative aspect-[4/3] rounded-3xl bg-latte-50 border-2 border-dashed border-latte-300 hover:border-caramel-500 transition-all p-5 flex flex-col items-center justify-center text-center overflow-hidden">
+                            <div class="w-12 h-12 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center text-caramel-600 mb-3 group-hover:scale-105 transition-transform">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <span class="font-serif font-bold text-espresso-900 text-base">Cozy Corner Nook</span>
+                            <span class="text-xs text-espresso-600 mt-1">Photo Coming Soon</span>
+                            <span class="mt-2.5 text-[11px] font-medium text-caramel-600 bg-caramel-400/10 px-2.5 py-0.5 rounded-full">
+                                Books, Plug Points &amp; Soft Glow
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Dedicated 'The Ambience' Showcase Section -->
+    <section id="ambience" class="py-16 sm:py-24 bg-latte-100/80 border-b border-latte-200 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-caramel-600 block mb-2">Step Inside</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-950 mb-3">The Ambience at IMMY's</h2>
+                <p class="text-sm sm:text-base text-espresso-700 leading-relaxed">
+                    Thoughtfully designed to slow down the pace of the highway outside—combining warm textures, gentle lighting, and unhurried comfort.
+                </p>
+            </div>
+
+            <!-- 4 Custom-Illustrated Ambience Pillars -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Pillar 1: Warm Amber Pendant Lighting -->
+                <div class="bg-white rounded-3xl p-6 border border-latte-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-32 rounded-2xl bg-latte-50 border border-latte-200/70 mb-5 flex items-center justify-center overflow-hidden">
+                            <!-- Custom SVG Pendant Lamp Illustration -->
+                            <svg viewBox="0 0 140 100" class="w-32 h-24" fill="none">
+                                <path d="M70 0V24" stroke="#3E271B" stroke-width="2.5"/>
+                                <path d="M44 48C44 33.6406 55.6406 22 70 22C84.3594 22 96 33.6406 96 48H44Z" fill="#2C1B12"/>
+                                <ellipse cx="70" cy="48" rx="26" ry="4" fill="#D98A4E"/>
+                                <circle cx="70" cy="51" r="7" fill="#FFF3B8"/>
+                                <!-- Warm Light Cone -->
+                                <path d="M48 52L26 96H114L92 52H48Z" fill="url(#lampGlow)" fill-opacity="0.45"/>
+                                <defs>
+                                    <linearGradient id="lampGlow" x1="70" y1="52" x2="70" y2="96" gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#F7CE46"/>
+                                        <stop offset="1" stop-color="#FDFBF7" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-espresso-950 mb-2">Warm Amber Glow</h3>
+                        <p class="text-sm text-espresso-700 leading-relaxed">
+                            Soft overhead pendant lamps cast a golden, soothing light across every table—easy on the eyes from late afternoon into the night.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Natural Wood & Earthy Comfort -->
+                <div class="bg-white rounded-3xl p-6 border border-latte-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-32 rounded-2xl bg-latte-50 border border-latte-200/70 mb-5 flex items-center justify-center overflow-hidden">
+                            <!-- Custom SVG Cozy Armchair & Indoor Plant Illustration -->
+                            <svg viewBox="0 0 140 100" class="w-32 h-24" fill="none">
+                                <!-- Potted Plant -->
+                                <path d="M24 68H42L39 86H27L24 68Z" fill="#C46D31"/>
+                                <path d="M33 68C33 56 23 52 21 44C28 45 33 52 33 60" fill="#5B7052"/>
+                                <path d="M33 68C33 54 43 50 45 42C38 43 33 51 33 60" fill="#4E7A3E"/>
+                                <!-- Cozy Wooden Chair -->
+                                <rect x="58" y="34" width="54" height="34" rx="10" fill="#D99B66" stroke="#6F4833" stroke-width="2"/>
+                                <rect x="52" y="54" width="66" height="18" rx="7" fill="#EFE3D1" stroke="#6F4833" stroke-width="2"/>
+                                <path d="M62 72L58 88" stroke="#3E271B" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M108 72L112 88" stroke="#3E271B" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-espresso-950 mb-2">Earthy Wood &amp; Greenery</h3>
+                        <p class="text-sm text-espresso-700 leading-relaxed">
+                            Hand-finished wooden tables, plush corner booths, and lush indoor plants bring calm, organic warmth to every seat.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Acoustic Playlists & Unhurried Corners -->
+                <div class="bg-white rounded-3xl p-6 border border-latte-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-32 rounded-2xl bg-latte-50 border border-latte-200/70 mb-5 flex items-center justify-center overflow-hidden">
+                            <!-- Custom SVG Vinyl / Acoustic Music & Book Illustration -->
+                            <svg viewBox="0 0 140 100" class="w-32 h-24" fill="none">
+                                <!-- Vinyl Record -->
+                                <circle cx="62" cy="52" r="26" fill="#2C1B12"/>
+                                <circle cx="62" cy="52" r="18" stroke="#543626" stroke-width="1.5"/>
+                                <circle cx="62" cy="52" r="8" fill="#D98A4E"/>
+                                <circle cx="62" cy="52" r="2.5" fill="#FDFBF7"/>
+                                <!-- Music Notes -->
+                                <path d="M98 34V54" stroke="#C46D31" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M98 34L112 30V50" stroke="#C46D31" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="94" cy="55" r="4" fill="#C46D31"/>
+                                <circle cx="108" cy="51" r="4" fill="#C46D31"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-espresso-950 mb-2">Soft Acoustic Vibes</h3>
+                        <p class="text-sm text-espresso-700 leading-relaxed">
+                            Curated lo-fi and acoustic instrumental melodies play gently in the background—ideal for reading, quiet chats, or remote work.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 4: Breezy Toran Club Evenings -->
+                <div class="bg-white rounded-3xl p-6 border border-latte-200/90 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-32 rounded-2xl bg-latte-50 border border-latte-200/70 mb-5 flex items-center justify-center overflow-hidden">
+                            <!-- Custom SVG Evening String Lights & Crescent Moon Illustration -->
+                            <svg viewBox="0 0 140 100" class="w-32 h-24" fill="none">
+                                <!-- String Light Wire -->
+                                <path d="M15 26C50 44 90 44 125 26" stroke="#3E271B" stroke-width="2"/>
+                                <!-- Bulbs -->
+                                <circle cx="38" cy="35" r="4.5" fill="#F7CE46"/>
+                                <circle cx="70" cy="40" r="5" fill="#F7CE46"/>
+                                <circle cx="102" cy="35" r="4.5" fill="#F7CE46"/>
+                                <!-- Breeze Lines -->
+                                <path d="M32 64H88C94 64 96 58 91 56" stroke="#6F4833" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M46 74H106C112 74 114 68 109 66" stroke="#D98A4E" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-serif text-xl font-bold text-espresso-950 mb-2">Breezy Evening Sit-Out</h3>
+                        <p class="text-sm text-espresso-700 leading-relaxed">
+                            Set within Toran Club off the highway, our outdoor seating welcomes cool evening breezes under warm string lights.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Category-Filtered Menu Section -->
+    <section id="menu" class="py-16 sm:py-24 bg-latte-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Heading -->
+            <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-caramel-600 block mb-2">Crafted Fresh to Order</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-espresso-950 mb-3">Our Cafe Menu</h2>
+                <p class="text-sm sm:text-base text-espresso-700">
+                    Choose a category below to browse our freshly brewed coffees, coolers, grilled sandwiches, and baked treats.
+                </p>
+            </div>
+
+            <!-- Category Selector Tabs (NO 'All' tab — defaults to first category) -->
+            <div class="mb-10">
+                <div id="category-tabs" role="tablist" aria-label="Menu Categories" class="flex items-center justify-start sm:justify-center gap-2.5 overflow-x-auto no-scrollbar pb-2 px-1">
+                    <!-- Category buttons injected dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- Active Category Header Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 mb-7 border-b border-latte-200">
+                <div>
+                    <h3 id="active-category-title" class="font-serif text-2xl font-bold text-espresso-900">Hot Coffees</h3>
+                    <p id="active-category-subtitle" class="text-sm text-espresso-600 mt-0.5">Rich, aromatic espresso-based classics served piping hot.</p>
+                </div>
+                <span id="active-category-count" class="inline-flex items-center self-start sm:self-auto px-3 py-1 rounded-full bg-latte-200/80 text-espresso-800 text-xs font-semibold">
+                    6 items
+                </span>
+            </div>
+
+            <!-- Filtered Menu Items Grid -->
+            <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Menu item cards with custom SVG food/drink illustrations injected here -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Order Online & Table Reservation Section (Zomato & District Hyperlinks) -->
+    <section id="order-reserve" class="py-16 sm:py-24 bg-espresso-900 text-latte-50 relative overflow-hidden">
+        <!-- Subtle warm ambient circle -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-caramel-500/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-caramel-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-[0.2em] uppercase text-caramel-400 block mb-2">Dine In or Enjoy at Home</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Order Food &amp; Reserve Your Table</h2>
+                <p class="text-sm sm:text-base text-latte-200/90">
+                    Craving IMMY's Coffee Cafe from home or planning a relaxed evening meetup at Toran Club? Use our official partner links below.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+                
+                <!-- Zomato Order Card -->
+                <div class="bg-espresso-800/80 border border-espresso-700 rounded-3xl p-7 sm:p-8 flex flex-col justify-between hover:border-[#E23744]/60 transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="px-4 py-1.5 rounded-xl bg-[#E23744] text-white font-bold italic text-lg tracking-tight shadow-sm">
+                                zomato
+                            </div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-latte-300 bg-espresso-900/80 px-3 py-1 rounded-full">
+                                Online Delivery
+                            </span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-2.5">Order Food on Zomato</h3>
+                        <p class="text-sm text-latte-200/85 leading-relaxed mb-7">
+                            Get your favorite cold coffees, grilled sandwiches, fries, and warm brownies delivered straight to your doorstep around Palanpur &amp; Toran Club.
+                        </p>
+                    </div>
+                    <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 bg-[#E23744] hover:bg-[#cb2b37] text-white font-semibold py-3.5 px-6 rounded-2xl shadow-md transition-all">
+                        <span>Order Now on Zomato</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- District Table Reservation Card -->
+                <div class="bg-espresso-800/80 border border-espresso-700 rounded-3xl p-7 sm:p-8 flex flex-col justify-between hover:border-[#7B5CFF]/60 transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="px-4 py-1.5 rounded-xl bg-[#5B2EFF] text-white font-bold text-lg tracking-tight shadow-sm flex items-center gap-1.5">
+                                <span>district</span>
+                                <span class="text-[10px] font-normal opacity-80 uppercase tracking-widest">by zomato</span>
+                            </div>
+                            <span class="text-xs font-semibold uppercase tracking-wider text-latte-300 bg-espresso-900/80 px-3 py-1 rounded-full">
+                                Table Booking
+                            </span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-2.5">Reserve a Table on District</h3>
+                        <p class="text-sm text-latte-200/85 leading-relaxed mb-7">
+                            Planning a coffee date, study session, or friends' catch-up? Book your cozy table in advance on District for a seamless dining-out experience.
+                        </p>
+                    </div>
+                    <a href="https://www.district.in" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-2.5 bg-[#5B2EFF] hover:bg-[#4920D9] text-white font-semibold py-3.5 px-6 rounded-2xl shadow-md transition-all">
+                        <span>Book Table on District</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="visit" class="py-16 sm:py-24 bg-latte-100/70 border-t border-latte-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                
+                <!-- Contact & Address Details -->
+                <div class="lg:col-span-6 bg-white rounded-3xl p-7 sm:p-9 border border-latte-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-bold tracking-[0.2em] uppercase text-caramel-600 block mb-2">Find Us</span>
+                        <h2 class="font-serif text-3xl font-bold text-espresso-950 mb-6">Visit IMMY's Coffee Cafe</h2>
+
+                        <div class="space-y-6">
+                            <!-- Address -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-11 h-11 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center shrink-0 text-caramel-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-espresso-900 text-sm uppercase tracking-wider mb-1">Cafe Address</h3>
+                                    <p class="text-espresso-700 text-base leading-relaxed">
+                                        Toran Club, Ahmedabad - Palanpur Hwy,<br>
+                                        Gujarat 385001, India
+                                    </p>
+                                    <button onclick="copyText('Toran Club, Ahmedabad - Palanpur Hwy, Gujarat 385001', 'Address copied to clipboard!')" class="mt-2 inline-flex items-center gap-1.5 text-xs font-semibold text-caramel-600 hover:text-espresso-900 transition-colors">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                        <span>Copy Address</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Phone Contact -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-11 h-11 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center shrink-0 text-caramel-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-espresso-900 text-sm uppercase tracking-wider mb-1">Phone &amp; Direct Inquiries</h3>
+                                    <a href="tel:+916353405943" class="text-lg font-bold text-espresso-900 hover:text-caramel-600 transition-colors block">
+                                        +91 6353405943
+                                    </a>
+                                    <div class="flex flex-wrap items-center gap-3 mt-2">
+                                        <a href="tel:+916353405943" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-espresso-900 text-latte-50 text-xs font-semibold hover:bg-caramel-600 transition-colors">
+                                            Call Now
+                                        </a>
+                                        <button onclick="copyText('6353405943', 'Phone number 6353405943 copied!')" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-latte-100 text-espresso-800 border border-latte-300 text-xs font-semibold hover:bg-latte-200 transition-colors">
+                                            Copy Number
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Cafe Hours -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-11 h-11 rounded-2xl bg-latte-100 border border-latte-200 flex items-center justify-center shrink-0 text-caramel-600">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-espresso-900 text-sm uppercase tracking-wider mb-1">Opening Hours</h3>
+                                    <p class="text-espresso-700 text-sm">Monday – Sunday: <span class="font-semibold text-espresso-900">10:00 AM – 11:00 PM</span></p>
+                                    <p class="text-xs text-sage-500 font-medium mt-0.5">Open all 7 days of the week</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Styled Location Map Card -->
+                <div class="lg:col-span-6 bg-white rounded-3xl p-4 sm:p-5 border border-latte-200 shadow-sm flex flex-col">
+                    <div class="relative flex-1 min-h-[300px] rounded-2xl overflow-hidden bg-latte-100 border border-latte-200">
+                        <iframe 
+                            title="IMMY's COFFEE CAFE Location Map"
+                            class="w-full h-full min-h-[300px] border-0"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            src="https://maps.google.com/maps?q=Toran%20Club,%20Ahmedabad%20-%20Palanpur%20Hwy,%20Gujarat%20385001&t=&z=14&ie=UTF8&iwloc=&output=embed">
+                        </iframe>
+                    </div>
+                    <div class="pt-4 px-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <p class="text-xs text-espresso-600">
+                            Located right inside/near <strong class="text-espresso-900">Toran Club</strong> along NH-27 (Ahmedabad–Palanpur Hwy).
+                        </p>
+                        <a href="https://maps.google.com/?q=Toran+Club,+Ahmedabad+-+Palanpur+Hwy,+Gujarat+385001" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 text-xs font-bold text-caramel-600 hover:text-espresso-900 shrink-0">
+                            <span>Open in Google Maps</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-espresso-950 text-latte-300 py-12 border-t border-espresso-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-espresso-800">
+                <div class="text-center md:text-left">
+                    <span class="font-serif text-2xl font-bold text-white tracking-tight block">IMMY's COFFEE CAFE</span>
+                    <p class="text-xs text-latte-300/80 mt-1">Toran Club, Ahmedabad - Palanpur Hwy, Gujarat 385001</p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+                    <a href="tel:+916353405943" class="text-caramel-400 hover:text-white font-semibold transition-colors">
+                        +91 6353405943
+                    </a>
+                    <span class="text-espresso-700">•</span>
+                    <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                        Zomato Order
+                    </a>
+                    <span class="text-espresso-700">•</span>
+                    <a href="https://www.district.in" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                        District Table Reservation
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-latte-300/60">
+                <p>&copy; <span id="year"></span> IMMY's COFFEE CAFE. All rights reserved.</p>
+                <p>Brewed with warmth in Gujarat, India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Logic & Custom SVG Food/Drink Illustrations -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toast helper for user feedback (replaces alert)
+        function showToast(msg) {
+            const toastBox = document.getElementById('toast-box');
+            const toastMessage = document.getElementById('toast-message');
+            toastMessage.textContent = msg;
+            toastBox.classList.remove('translate-y-20', 'opacity-0');
+            toastBox.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toastBox.classList.add('translate-y-20', 'opacity-0');
+                toastBox.classList.remove('translate-y-0', 'opacity-100');
+            }, 2800);
+        }
+
+        // Clipboard copy helper using execCommand fallback
+        function copyText(text, successMessage) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast(successMessage);
+            } catch (err) {
+                showToast('Unable to copy text.');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Custom SVG Illustration Library for Every Menu Item (No Stock Images)
+        const illustrations = {
+            espresso: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="96" rx="34" ry="6" fill="#DFCBB0"/>
+                    <path d="M56 52H104V74C104 86.1503 94.1503 96 82 96H78C65.8497 96 56 86.1503 56 74V52Z" fill="#3E271B"/>
+                    <path d="M104 59H112C116.418 59 120 62.5817 120 67C120 71.4183 116.418 75 112 75H104" stroke="#3E271B" stroke-width="4.5" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="52" rx="24" ry="5.5" fill="#C46D31"/>
+                    <path d="M72 39C72 34 76 32 76 27" stroke="#D98A4E" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M86 39C86 34 90 32 90 27" stroke="#D98A4E" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>`,
+            americano: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F6EFE6"/>
+                    <ellipse cx="80" cy="98" rx="38" ry="6.5" fill="#DFCBB0"/>
+                    <path d="M52 44H108V73C108 86.8071 96.8071 98 83 98H77C63.1929 98 52 86.8071 52 73V44Z" fill="#FFFFFF" stroke="#2C1B12" stroke-width="2.5"/>
+                    <path d="M108 53H117C121.971 53 126 57.0294 126 62C126 66.9706 121.971 71 117 71H108" stroke="#2C1B12" stroke-width="4.5" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="44" rx="26.5" ry="5.5" fill="#2C1B12"/>
+                    <path d="M75 31C75 26 79 24 79 19" stroke="#A6541E" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M87 32C87 27 91 25 91 20" stroke="#A6541E" stroke-width="2" stroke-linecap="round"/>
+                </svg>`,
+            cappuccino: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="98" rx="42" ry="7" fill="#DFCBB0"/>
+                    <path d="M48 46H112V71C112 85.9117 99.9117 98 85 98H75C60.0883 98 48 85.9117 48 71V46Z" fill="#C46D31"/>
+                    <path d="M112 54H121C125.971 54 130 58.0294 130 63C130 67.9706 125.971 72 121 72H112" stroke="#C46D31" stroke-width="5" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="46" rx="32" ry="7" fill="#FDFBF7" stroke="#C46D31" stroke-width="2"/>
+                    <circle cx="80" cy="46" r="4" fill="#A6541E"/>
+                    <circle cx="71" cy="45" r="1.5" fill="#A6541E"/>
+                    <circle cx="89" cy="47" r="1.5" fill="#A6541E"/>
+                    <path d="M73 32C73 27 77 25 77 20" stroke="#6F4833" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M86 32C86 27 90 25 90 20" stroke="#6F4833" stroke-width="2" stroke-linecap="round"/>
+                </svg>`,
+            latte: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F5EDE2"/>
+                    <ellipse cx="80" cy="99" rx="36" ry="6" fill="#DFCBB0"/>
+                    <path d="M54 38H106L100 94C99.5 96.5 97.5 98 95 98H65C62.5 98 60.5 96.5 60 94L54 38Z" fill="#EFE3D1" stroke="#6F4833" stroke-width="2.5"/>
+                    <path d="M57 58H103L100 94H60L57 58Z" fill="#D98A4E" fill-opacity="0.45"/>
+                    <ellipse cx="80" cy="38" rx="26" ry="5.5" fill="#FDFBF7" stroke="#6F4833" stroke-width="2"/>
+                    <path d="M80 41C80 41 74 37.5 74 35.5C74 34.3 75 33.5 76.2 33.5C77.5 33.5 79 34.5 80 35.8C81 34.5 82.5 33.5 83.8 33.5C85 33.5 86 34.3 86 35.5C86 37.5 80 41 80 41Z" fill="#C46D31"/>
+                </svg>`,
+            mocha: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="99" rx="38" ry="6" fill="#DFCBB0"/>
+                    <path d="M52 48H108V73C108 86.8071 96.8071 98 83 98H77C63.1929 98 52 86.8071 52 73V48Z" fill="#2C1B12"/>
+                    <path d="M108 56H117C121.971 56 126 60.0294 126 65C126 69.9706 121.971 74 117 74H108" stroke="#2C1B12" stroke-width="4.5" stroke-linecap="round"/>
+                    <!-- Whipped Cream Swirl -->
+                    <path d="M56 48C56 38 66 35 80 35C94 35 104 38 104 48H56Z" fill="#FDFBF7"/>
+                    <path d="M66 37C68 29 74 26 80 26C86 26 92 29 94 37" fill="#FDFBF7"/>
+                    <!-- Cocoa Drizzle -->
+                    <path d="M68 41C74 37 86 44 92 39" stroke="#6F4833" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>`,
+            hotChocolate: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F6EFE6"/>
+                    <ellipse cx="80" cy="98" rx="40" ry="6.5" fill="#DFCBB0"/>
+                    <path d="M50 48H110V72C110 86.3594 98.3594 98 84 98H76C61.6406 98 50 86.3594 50 72V48Z" fill="#8C4327"/>
+                    <path d="M110 55H119C123.971 55 128 59.0294 128 64C128 68.9706 123.971 73 119 73H110" stroke="#8C4327" stroke-width="4.5" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="48" rx="30" ry="6" fill="#3E271B"/>
+                    <!-- Marshmallows -->
+                    <rect x="66" y="40" width="11" height="9" rx="3" fill="#FDFBF7" stroke="#DFCBB0" stroke-width="1"/>
+                    <rect x="81" y="41" width="11" height="9" rx="3" fill="#FDFBF7" stroke="#DFCBB0" stroke-width="1"/>
+                    <path d="M76 29C76 24 80 22 80 17" stroke="#C46D31" stroke-width="2" stroke-linecap="round"/>
+                </svg>`,
+            coldCoffee: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F4ECE1"/>
+                    <!-- Straw -->
+                    <path d="M92 16L84 44" stroke="#C46D31" stroke-width="4" stroke-linecap="round"/>
+                    <!-- Tall Glass -->
+                    <path d="M58 34H102L96 102H64L58 34Z" fill="#FDFBF7" stroke="#6F4833" stroke-width="2.5"/>
+                    <path d="M60 48H100L95.5 100H64.5L60 48Z" fill="#B87A4B"/>
+                    <!-- Creamy Foam Top -->
+                    <path d="M58 36H102L100.5 49H59.5L58 36Z" fill="#EFE3D1"/>
+                    <!-- Ice Cubes -->
+                    <rect x="68" y="56" width="11" height="11" rx="2.5" transform="rotate(12 68 56)" fill="#FDFBF7" fill-opacity="0.65"/>
+                    <rect x="82" y="68" width="11" height="11" rx="2.5" transform="rotate(-10 82 68)" fill="#FDFBF7" fill-opacity="0.65"/>
+                </svg>`,
+            icedAmericano: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <path d="M90 15L83 40" stroke="#2C1B12" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M58 34H102L96 102H64L58 34Z" fill="#FFFFFF" stroke="#2C1B12" stroke-width="2.5"/>
+                    <path d="M60 46H100L95.5 100H64.5L60 46Z" fill="#3E271B"/>
+                    <!-- Floating Ice Cubes -->
+                    <rect x="66" y="42" width="12" height="12" rx="2.5" transform="rotate(-8 66 42)" fill="#E6F4F8" stroke="#B7DCE6" stroke-width="1.2"/>
+                    <rect x="81" y="45" width="12" height="12" rx="2.5" transform="rotate(14 81 45)" fill="#E6F4F8" stroke="#B7DCE6" stroke-width="1.2"/>
+                    <rect x="73" y="62" width="11" height="11" rx="2.5" transform="rotate(6 73 62)" fill="#E6F4F8" fill-opacity="0.45"/>
+                </svg>`,
+            icedLatte: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F5EDE2"/>
+                    <path d="M68 15L76 42" stroke="#D98A4E" stroke-width="3.8" stroke-linecap="round"/>
+                    <path d="M58 34H102L96 102H64L58 34Z" fill="#FFFFFF" stroke="#6F4833" stroke-width="2.5"/>
+                    <!-- Milk Layer -->
+                    <path d="M61 62H99L95.5 100H64.5L61 62Z" fill="#F5EBDD"/>
+                    <!-- Espresso Swirl Layer -->
+                    <path d="M60 44H100L99 64H61L60 44Z" fill="#A6541E"/>
+                    <rect x="68" y="48" width="10" height="10" rx="2" fill="#FFFFFF" fill-opacity="0.6"/>
+                    <rect x="82" y="54" width="10" height="10" rx="2" fill="#FFFFFF" fill-opacity="0.6"/>
+                </svg>`,
+            masalaChai: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <!-- Kulhad Terracotta Cup -->
+                    <path d="M58 44H102L96 98H64L58 44Z" fill="#C46D31"/>
+                    <path d="M59 54H101" stroke="#A6541E" stroke-width="2"/>
+                    <path d="M60 60H100" stroke="#A6541E" stroke-width="1.5"/>
+                    <ellipse cx="80" cy="44" rx="22" ry="5" fill="#D99B66" stroke="#A6541E" stroke-width="2"/>
+                    <!-- Steam -->
+                    <path d="M73 32C73 26 78 24 78 18" stroke="#6F4833" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M86 33C86 27 91 25 91 19" stroke="#6F4833" stroke-width="2" stroke-linecap="round"/>
+                </svg>`,
+            lemonIcedTea: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F6F3E8"/>
+                    <!-- Lemon Wheel on Rim -->
+                    <circle cx="102" cy="36" r="13" fill="#F5C842" stroke="#E0A81E" stroke-width="2"/>
+                    <circle cx="102" cy="36" r="9" fill="#FFF3B8"/>
+                    <!-- Glass -->
+                    <path d="M58 36H102L96 102H64L58 36Z" fill="#FFFFFF" stroke="#6F4833" stroke-width="2.2"/>
+                    <path d="M60 48H100L95.5 100H64.5L60 48Z" fill="#D9822B" fill-opacity="0.82"/>
+                    <!-- Mint Leaf & Ice -->
+                    <path d="M72 48C72 42 80 40 83 45C80 49 74 49 72 48Z" fill="#5B7052"/>
+                    <rect x="69" y="60" width="11" height="11" rx="2" fill="#FFF8E6" fill-opacity="0.55"/>
+                </svg>`,
+            mintMojito: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F2F6F0"/>
+                    <path d="M90 15L83 40" stroke="#5B7052" stroke-width="3.5" stroke-linecap="round"/>
+                    <path d="M58 34H102L96 102H64L58 34Z" fill="#FFFFFF" stroke="#4A5D43" stroke-width="2.2"/>
+                    <path d="M60 48H100L95.5 100H64.5L60 48Z" fill="#D8EFE0"/>
+                    <!-- Lime Wedge & Mint Leaves -->
+                    <path d="M68 68C68 60 78 58 80 66C76 71 70 70 68 68Z" fill="#76A843"/>
+                    <path d="M78 54C78 48 86 46 88 52C84 56 80 56 78 54Z" fill="#4E7A3E"/>
+                    <circle cx="74" cy="84" r="2" fill="#FFFFFF"/>
+                    <circle cx="85" cy="78" r="2.5" fill="#FFFFFF"/>
+                </svg>`,
+            vegSandwich: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="96" rx="52" ry="8" fill="#EFE3D1"/>
+                    <!-- Triangle Grilled Sandwich -->
+                    <path d="M36 86L80 34L124 86H36Z" fill="#E6B87D" stroke="#A6541E" stroke-width="2.5" stroke-linejoin="round"/>
+                    <!-- Grill Marks -->
+                    <path d="M64 56L76 68" stroke="#8C4327" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M74 48L88 62" stroke="#8C4327" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Fresh Veggie & Cheese Filling Layer -->
+                    <path d="M38 86H122V91H38V86Z" fill="#5B7052"/>
+                    <path d="M42 82H118V86H42V82Z" fill="#F5C842"/>
+                    <path d="M46 79H114V82H46V79Z" fill="#D9534F"/>
+                </svg>`,
+            cheeseChilliToast: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="96" rx="52" ry="8" fill="#EFE3D1"/>
+                    <!-- Crispy Toast Slice -->
+                    <rect x="42" y="42" width="76" height="48" rx="10" fill="#C46D31" stroke="#6F4833" stroke-width="2.5"/>
+                    <!-- Melted Golden Cheese Top -->
+                    <rect x="48" y="48" width="64" height="36" rx="6" fill="#F7CE46"/>
+                    <!-- Green Chilli & Herb Bits -->
+                    <circle cx="64" cy="60" r="3" fill="#4E7A3E"/>
+                    <circle cx="92" cy="62" r="3" fill="#4E7A3E"/>
+                    <circle cx="78" cy="72" r="3" fill="#4E7A3E"/>
+                    <rect x="74" y="55" width="5" height="3" rx="1" fill="#D9534F"/>
+                    <rect x="86" y="73" width="5" height="3" rx="1" fill="#D9534F"/>
+                </svg>`,
+            paneerSandwich: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F6EFE6"/>
+                    <ellipse cx="80" cy="96" rx="54" ry="8" fill="#EFE3D1"/>
+                    <!-- Double Decker Sandwich -->
+                    <rect x="40" y="76" width="80" height="10" rx="4" fill="#D99B66" stroke="#8C4327" stroke-width="2"/>
+                    <rect x="44" y="67" width="72" height="9" rx="3" fill="#E06D3B"/>
+                    <rect x="40" y="57" width="80" height="10" rx="4" fill="#D99B66" stroke="#8C4327" stroke-width="2"/>
+                    <rect x="46" y="50" width="68" height="7" rx="2" fill="#5B7052"/>
+                    <rect x="40" y="40" width="80" height="10" rx="4" fill="#E6B87D" stroke="#8C4327" stroke-width="2"/>
+                </svg>`,
+            saltedFries: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <!-- Golden French Fries -->
+                    <rect x="60" y="26" width="8" height="44" rx="3" transform="rotate(-12 60 26)" fill="#F5C23E" stroke="#C48B16" stroke-width="1.5"/>
+                    <rect x="72" y="22" width="8" height="48" rx="3" transform="rotate(-3 72 22)" fill="#F7CE46" stroke="#C48B16" stroke-width="1.5"/>
+                    <rect x="84" y="23" width="8" height="47" rx="3" transform="rotate(5 84 23)" fill="#F5C23E" stroke="#C48B16" stroke-width="1.5"/>
+                    <rect x="95" y="28" width="8" height="42" rx="3" transform="rotate(14 95 28)" fill="#F7CE46" stroke="#C48B16" stroke-width="1.5"/>
+                    <!-- Kraft Paper Cup -->
+                    <path d="M54 54H106L98 100H62L54 54Z" fill="#6F4833"/>
+                    <path d="M54 54C68 62 92 62 106 54" stroke="#3E271B" stroke-width="2"/>
+                </svg>`,
+            periPeriFries: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F0E8"/>
+                    <!-- Spiced Peri Peri Fries -->
+                    <rect x="60" y="26" width="8" height="44" rx="3" transform="rotate(-12 60 26)" fill="#E88D2A" stroke="#B84A14" stroke-width="1.5"/>
+                    <rect x="72" y="22" width="8" height="48" rx="3" transform="rotate(-3 72 22)" fill="#F29F38" stroke="#B84A14" stroke-width="1.5"/>
+                    <rect x="84" y="23" width="8" height="47" rx="3" transform="rotate(5 84 23)" fill="#E88D2A" stroke="#B84A14" stroke-width="1.5"/>
+                    <rect x="95" y="28" width="8" height="42" rx="3" transform="rotate(14 95 28)" fill="#F29F38" stroke="#B84A14" stroke-width="1.5"/>
+                    <!-- Spice Specks -->
+                    <circle cx="76" cy="34" r="1.5" fill="#A62614"/>
+                    <circle cx="88" cy="38" r="1.5" fill="#A62614"/>
+                    <circle cx="67" cy="40" r="1.5" fill="#A62614"/>
+                    <!-- Cup -->
+                    <path d="M54 54H106L98 100H62L54 54Z" fill="#A6541E"/>
+                </svg>`,
+            garlicBread: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="95" rx="54" ry="8" fill="#EFE3D1"/>
+                    <!-- Two Golden Baguette Slices -->
+                    <ellipse cx="64" cy="70" rx="24" ry="16" transform="rotate(-15 64 70)" fill="#E6B87D" stroke="#8C4327" stroke-width="2.5"/>
+                    <ellipse cx="64" cy="70" rx="18" ry="11" transform="rotate(-15 64 70)" fill="#F7DC79"/>
+                    <ellipse cx="96" cy="72" rx="24" ry="16" transform="rotate(12 96 72)" fill="#E6B87D" stroke="#8C4327" stroke-width="2.5"/>
+                    <ellipse cx="96" cy="72" rx="18" ry="11" transform="rotate(12 96 72)" fill="#F7DC79"/>
+                    <!-- Herb Garnish -->
+                    <circle cx="62" cy="68" r="2" fill="#4E7A3E"/>
+                    <circle cx="96" cy="71" r="2" fill="#4E7A3E"/>
+                </svg>`,
+            brownie: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F6EFE6"/>
+                    <ellipse cx="80" cy="96" rx="48" ry="8" fill="#EFE3D1"/>
+                    <!-- Fudgy Chocolate Brownie Block -->
+                    <path d="M46 62L80 48L114 62V86L80 98L46 86V62Z" fill="#3E271B"/>
+                    <path d="M46 62L80 48L114 62L80 75L46 62Z" fill="#543626"/>
+                    <!-- Chocolate Sauce Drizzle -->
+                    <path d="M58 61C68 57 74 66 86 59C94 55 98 62 104 61" stroke="#1D120C" stroke-width="3" stroke-linecap="round"/>
+                </svg>`,
+            cheesecake: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="96" rx="48" ry="8" fill="#EFE3D1"/>
+                    <!-- Cheesecake Wedge -->
+                    <path d="M44 62L114 48V84L44 90V62Z" fill="#FDFBF7" stroke="#DFCBB0" stroke-width="2"/>
+                    <!-- Biscuit Base -->
+                    <path d="M44 84L114 78V84L44 90V84Z" fill="#C46D31"/>
+                    <!-- Blueberry Compote Top -->
+                    <path d="M44 62L114 48L114 55L44 68V62Z" fill="#4A3B7C"/>
+                    <circle cx="88" cy="49" r="5" fill="#322659"/>
+                    <circle cx="97" cy="47" r="4.5" fill="#4A3B7C"/>
+                </svg>`,
+            croissant: `
+                <svg viewBox="0 0 160 120" class="w-full h-full" fill="none">
+                    <rect width="160" height="120" rx="16" fill="#F8F2E9"/>
+                    <ellipse cx="80" cy="94" rx="48" ry="8" fill="#EFE3D1"/>
+                    <!-- Flaky Butter Croissant -->
+                    <path d="M38 78C42 54 60 42 80 42C100 42 118 54 122 78C112 83 98 80 80 80C62 80 48 83 38 78Z" fill="#D98A4E"/>
+                    <path d="M60 46C64 58 64 69 61 80" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M80 42C80 55 80 68 80 80" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M100 46C96 58 96 69 99 80" stroke="#A6541E" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>`
+        };
+
+        // Decent, Realistic Cafe Menu Data (Organized Strictly by Category)
+        const menuCategories = [
+            {
+                id: 'hot-coffees',
+                name: 'Hot Coffees',
+                subtitle: 'Rich, aromatic espresso-based classics served piping hot.',
+                items: [
+                    {
+                        name: 'Espresso',
+                        price: 110,
+                        tag: 'Strong & Pure',
+                        description: 'Single-origin dark roast shot extracted with a rich golden crema.',
+                        art: illustrations.espresso
+                    },
+                    {
+                        name: 'Americano',
+                        price: 130,
+                        tag: 'Classic Black',
+                        description: 'Smooth double espresso topped with hot filtered water for a clean finish.',
+                        art: illustrations.americano
+                    },
+                    {
+                        name: 'Cappuccino',
+                        price: 150,
+                        tag: 'Cafe Favorite',
+                        description: 'Equal parts rich espresso, steamed milk, and thick velvety micro-foam.',
+                        art: illustrations.cappuccino
+                    },
+                    {
+                        name: 'Cafe Latte',
+                        price: 160,
+                        tag: 'Creamy',
+                        description: 'Mellow espresso poured into silky steamed milk with light foam.',
+                        art: illustrations.latte
+                    },
+                    {
+                        name: 'Cafe Mocha',
+                        price: 180,
+                        tag: 'Chocolatey',
+                        description: 'Espresso blended with rich dark cocoa and topped with creamy milk foam.',
+                        art: illustrations.mocha
+                    },
+                    {
+                        name: 'Hot Chocolate',
+                        price: 170,
+                        tag: 'Cozy Classic',
+                        description: 'Warm, velvety melted chocolate steamed with fresh milk and soft marshmallows.',
+                        art: illustrations.hotChocolate
+                    }
+                ]
+            },
+            {
+                id: 'cold-brews',
+                name: 'Cold Coffees & Iced',
+                subtitle: 'Chilled, refreshing coffee favorites blended or poured over ice.',
+                items: [
+                    {
+                        name: 'Classic Cold Coffee',
+                        price: 170,
+                        tag: 'Bestseller',
+                        description: 'Thick, creamy blended cold coffee with a balanced roasted flavor.',
+                        art: illustrations.coldCoffee
+                    },
+                    {
+                        name: 'Iced Americano',
+                        price: 140,
+                        tag: 'Crisp & Bold',
+                        description: 'Chilled double shot of espresso poured over crystal-clear ice and cold water.',
+                        art: illustrations.icedAmericano
+                    },
+                    {
+                        name: 'Iced Latte',
+                        price: 170,
+                        tag: 'Smooth',
+                        description: 'Fresh cold milk layered with a bold espresso shot over ice cubes.',
+                        art: illustrations.icedLatte
+                    }
+                ]
+            },
+            {
+                id: 'tea-coolers',
+                name: 'Tea & Coolers',
+                subtitle: 'Soothing spiced teas and zesty, chilled house refreshers.',
+                items: [
+                    {
+                        name: 'Masala Chai',
+                        price: 90,
+                        tag: 'Desi Comfort',
+                        description: 'Assam tea brewed with crushed ginger, green cardamom, and fresh milk.',
+                        art: illustrations.masalaChai
+                    },
+                    {
+                        name: 'Lemon Iced Tea',
+                        price: 130,
+                        tag: 'Refreshing',
+                        description: 'Chilled brewed black tea infused with fresh lemon juice and a hint of mint.',
+                        art: illustrations.lemonIcedTea
+                    },
+                    {
+                        name: 'Mint Mojito',
+                        price: 140,
+                        tag: 'Cool & Zesty',
+                        description: 'Fresh muddled mint leaves, lime wedges, and sparkling soda over crushed ice.',
+                        art: illustrations.mintMojito
+                    }
+                ]
+            },
+            {
+                id: 'sandwiches',
+                name: 'Sandwiches & Toast',
+                subtitle: 'Hearty, golden-grilled breads layered with fresh fillings.',
+                items: [
+                    {
+                        name: 'Veg Grilled Sandwich',
+                        price: 150,
+                        tag: 'Fresh & Crispy',
+                        description: 'Cucumber, tomato, onion, and spiced green chutney grilled with butter.',
+                        art: illustrations.vegSandwich
+                    },
+                    {
+                        name: 'Cheese Chilli Toast',
+                        price: 160,
+                        tag: 'Warm & Melty',
+                        description: 'Toasted sourdough topped with melted mozzarella, cheddar, and green chillies.',
+                        art: illustrations.cheeseChilliToast
+                    },
+                    {
+                        name: 'Paneer Tikka Sandwich',
+                        price: 190,
+                        tag: 'House Special',
+                        description: 'Soft marinated paneer cubes, bell peppers, and mint mayo grilled to perfection.',
+                        art: illustrations.paneerSandwich
+                    }
+                ]
+            },
+            {
+                id: 'snacks',
+                name: 'Snacks & Sides',
+                subtitle: 'Crisp, shareable bites that pair effortlessly with any cup.',
+                items: [
+                    {
+                        name: 'Classic Salted Fries',
+                        price: 120,
+                        tag: 'Crispy',
+                        description: 'Golden-fried potato strips lightly seasoned with sea salt.',
+                        art: illustrations.saltedFries
+                    },
+                    {
+                        name: 'Peri Peri Fries',
+                        price: 140,
+                        tag: 'Spiced',
+                        description: 'Crispy fries tossed in a tangy, mildly spicy peri-peri seasoning.',
+                        art: illustrations.periPeriFries
+                    },
+                    {
+                        name: 'Garlic Bread',
+                        price: 140,
+                        tag: 'Warm & Herby',
+                        description: 'Toasted baguette slices brushed with roasted garlic butter and dried herbs.',
+                        art: illustrations.garlicBread
+                    }
+                ]
+            },
+            {
+                id: 'desserts',
+                name: 'Desserts & Bakes',
+                subtitle: 'Sweet, freshly baked treats for your afternoon coffee break.',
+                items: [
+                    {
+                        name: 'Chocolate Brownie',
+                        price: 150,
+                        tag: 'Warm & Fudgy',
+                        description: 'Dense, rich dark chocolate brownie served warm with chocolate drizzle.',
+                        art: illustrations.brownie
+                    },
+                    {
+                        name: 'Blueberry Cheesecake',
+                        price: 210,
+                        tag: 'Creamy',
+                        description: 'Smooth cream cheese slice on a buttery biscuit base topped with blueberry compote.',
+                        art: illustrations.cheesecake
+                    },
+                    {
+                        name: 'Butter Croissant',
+                        price: 130,
+                        tag: 'Flaky Bake',
+                        description: 'Light, golden, flaky French-style pastry baked fresh every morning.',
+                        art: illustrations.croissant
+                    }
+                ]
+            }
+        ];
+
+        // Default to the first category (Never show all items at once)
+        let activeCategoryId = menuCategories[0].id;
+
+        const categoryTabsContainer = document.getElementById('category-tabs');
+        const menuGrid = document.getElementById('menu-grid');
+        const activeCategoryTitle = document.getElementById('active-category-title');
+        const activeCategorySubtitle = document.getElementById('active-category-subtitle');
+        const activeCategoryCount = document.getElementById('active-category-count');
+
+        // Render Category Tabs
+        function renderCategoryTabs() {
+            categoryTabsContainer.innerHTML = menuCategories.map(category => {
+                const isActive = category.id === activeCategoryId;
+                return `
+                    <button
+                        type="button"
+                        role="tab"
+                        aria-selected="${isActive}"
+                        onclick="selectCategory('${category.id}')"
+                        class="shrink-0 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                            isActive
+                                ? 'bg-espresso-900 text-latte-50 shadow-md scale-[1.02]'
+                                : 'bg-white text-espresso-700 border border-latte-300 hover:bg-latte-100 hover:text-espresso-950'
+                        }"
+                    >
+                        ${category.name}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        // Render Menu Items ONLY for the selected category
+        function renderMenuItems() {
+            const currentCategory = menuCategories.find(cat => cat.id === activeCategoryId);
+            if (!currentCategory) return;
+
+            activeCategoryTitle.textContent = currentCategory.name;
+            activeCategorySubtitle.textContent = currentCategory.subtitle;
+            activeCategoryCount.textContent = `${currentCategory.items.length} ${currentCategory.items.length === 1 ? 'item' : 'items'}`;
+
+            menuGrid.innerHTML = currentCategory.items.map((item, idx) => `
+                <article 
+                    style="animation-delay: ${idx * 55}ms"
+                    class="menu-card-animate opacity-0 bg-white rounded-3xl p-4 sm:p-5 border border-latte-200/90 shadow-sm hover:shadow-md hover:border-caramel-400/60 transition-all duration-200 flex flex-col justify-between group"
+                >
+                    <div>
+                        <!-- Custom Illustrated Food / Drink Card Frame -->
+                        <div class="relative w-full h-44 rounded-2xl overflow-hidden mb-4 border border-latte-200/70 bg-latte-100 group-hover:scale-[1.01] transition-transform duration-300">
+                            ${item.art}
+                            <span class="absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-espresso-800 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-latte-200 shadow-xs">
+                                ${item.tag}
+                            </span>
+                        </div>
+
+                        <!-- Item Title & Price -->
+                        <div class="flex items-start justify-between gap-3 mb-2">
+                            <h4 class="font-serif text-xl font-bold text-espresso-950 group-hover:text-caramel-600 transition-colors">
+                                ${item.name}
+                            </h4>
+                            <span class="shrink-0 font-bold text-base text-espresso-900 bg-latte-100 px-3 py-1 rounded-xl border border-latte-200">
+                                ₹${item.price}
+                            </span>
+                        </div>
+
+                        <!-- Appetizing Description -->
+                        <p class="text-sm text-espresso-700 leading-relaxed mb-4">
+                            ${item.description}
+                        </p>
+                    </div>
+
+                    <!-- Subtle Quick Action Footer -->
+                    <div class="pt-3 border-t border-latte-100 flex items-center justify-between text-xs">
+                        <span class="inline-flex items-center gap-1.5 text-sage-500 font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-sage-500"></span>
+                            Freshly Prepared
+                        </span>
+                        <a href="https://www.zomato.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-caramel-600 hover:text-espresso-900 transition-colors">
+                            Order on Zomato &rarr;
+                        </a>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Handle Category Switching
+        function selectCategory(categoryId) {
+            if (activeCategoryId === categoryId) return;
+            activeCategoryId = categoryId;
+            renderCategoryTabs();
+            renderMenuItems();
+        }
+
+        // Initial Render on Page Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategoryTabs();
+            renderMenuItems();
+        });
+    </script>
+</body>
+</html>
